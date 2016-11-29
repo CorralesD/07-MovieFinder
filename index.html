@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="" ng-app="movie-finder">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Movie Finder</title>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="bower_components/angular-toastr/dist/angular-toastr.css">
+</head>
+
+<body ng-controller="SearchController as search" style="background: url(movie-wall.jpg) no-repeat center center fixed">
+    <div>
+        <div class="container-fluid">
+            <div>
+                <h1>
+                    Movie Nerd
+                </h1>
+                <hr>
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" ng-model="search.input" placeholder="Search for...">
+                <span class="input-group-btn">
+                    <button class="btn btn-primary" type="button" ng-click="search.callOmdbApi(search.input)">Go!
+                    </button>
+                </span>
+            </div>
+            <br>
+            <div>
+                <div class="row">
+                    <div class="col-xs-4" ng-repeat="movie in search.results">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">{{movie.Title}}</div>
+                            <div class="panel-body text-center">
+                                <img ng-src="{{movie.Poster}}" class="img-thumbnail center-block" width="250" height="250">
+                                <small>Filmed in {{movie.Year}}</small>
+                                <br>
+                                <a ng-href="http://www.imdb.com/title/{{movie.imdbID}}">Click here to view on IMDB</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery -->
+    <script src="//code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <!-- Angular -->
+    <script src="bower_components/angular/angular.js"></script>
+    <!-- Angular-Toastr -->
+    <script src="bower_components/angular-toastr/dist/angular-toastr.tpls.js"></script>
+    <script src="app/app.module.js"></script>
+    <script src="app/core/movie.factory.js"></script>
+    <script src="app/search/search.controller.js"></script>
+</body>
+
+</html>
